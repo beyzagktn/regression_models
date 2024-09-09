@@ -22,6 +22,16 @@ df.head()
 y=df[["price"]]
 x=df.drop("price", axis=1)
 
+#WITHOUT TRAIN TEST
+lm=LinearRegression()
+model=lm.fit(x,y)
 model.predict([[2015,50000,100,2,3000,1,0,1.4]])
-
 model.score(x,y)
+
+#WITH TRAIN TEST
+x_train, x_test, y_train, y_test=train_test_split(x,y,train_size=0.7,random_state=17)
+
+lm=LinearRegression()
+model=lm.fit(x_train,y_train)
+model.score(x_test,y_test)
+model.predict([[2015,50000,100,2,3000,1,0,1.4]])
